@@ -1,4 +1,3 @@
-##Salam,
-GOLANG - Chi - MySQL
+## Salam
 
 https://godoc.org/github.com/go-chi/chi
