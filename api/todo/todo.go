@@ -1,6 +1,7 @@
 package todo
 
 import (
+	// "log"
 	"net/http"
 
 	"github.com/go-chi/chi"
@@ -16,7 +17,7 @@ type Todo struct {
 func Routes() *chi.Mux{
 	router := chi.NewRouter()
 	router.Get("/{todoID}", GetATodo)
-	router.Delete("/{todoID", DeleteTodo)
+	router.Delete("/{todoID}", DeleteTodo)
 	router.Post("/", CreateTodo)
 	router.Get("/", GetAllTodos)
 	return router
@@ -28,6 +29,7 @@ ______________________CRUD__________________________
 */
 
 func GetATodo(w http.ResponseWriter, r *http.Request){
+	// log.Printf("Get A")
 	todoID := chi.URLParam(r, "todoID")
 	todos := Todo{
 		Slug: todoID,
@@ -38,23 +40,26 @@ func GetATodo(w http.ResponseWriter, r *http.Request){
 }
 
 func DeleteTodo(w http.ResponseWriter, r *http.Request){
+	// log.Printf("Delete")
 	response := make(map[string]string)
 	response["message"] = "Deleted TODO successfully"
 	render.JSON(w,r,response) //return some demo response
 }
 
 func CreateTodo(w http.ResponseWriter, r *http.Request){
+	// log.Printf("Create")
 	response := make(map[string]string)
 	response["message"] = "Created TODO successfully"
 	render.JSON(w,r,response)//return some demo response
 }
 
 func GetAllTodos(w http.ResponseWriter, r *http.Request) {
+	// log.Printf("Get All")
 	todos := []Todo{
 		{
 			Slug: "slug",
 			Title:  "Hello days",
-			Body: "Here we met for the-x times"
+			Body: "Here we met for the-x times",
 		},
 	}	
 	render.JSON(w,r,todos) //a chi router helper for serializing and returning json

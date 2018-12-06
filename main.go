@@ -7,7 +7,7 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/render"
-	"github.com/tonyalaribe/todoapi/basestructure/features/todo"
+	"api-chi/api/todo"
 )
 
 func Routes() *chi.Mux{
@@ -24,6 +24,12 @@ func Routes() *chi.Mux{
 		r.Mount("/api/todo", todo.Routes())
 	})
 
+	// router.Route("/test", func(r chi.Router){
+	// 	log.Printf("lock & lock")
+	// })
+
+	// log.Printf("LOG ME")
+	// log.Printf("WERE")
 	return router	
 }
 
@@ -38,7 +44,7 @@ func main() {
 		log.Panicf("Logging err: %s\n") //panic if there is an error
 	}
 
-	log.Fatal(http.ListenAndServe(":8002", router)) //note, the port is usually gottem from
+	log.Fatal(http.ListenAndServe(":8082", router)) //note, the port is usually gottem from
 }
 
 /* 
